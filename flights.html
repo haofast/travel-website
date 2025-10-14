@@ -38,22 +38,20 @@
             <span>Passenger Info</span>
             <button type="button" id="passengerIcon"><i class="ph ph-user"></i></button>
           </div>
-          <div id="passengerForm" style="display:none;">
-            <div class="form-input-wrapper">
-              <label for="numAdults">Number of Adults (max 4)</label>
-              <input type="number" id="numAdults" min="0" max="4" required />
-            </div>
-            <div class="form-input-wrapper">
-              <label for="numChildren">Number of Children (max 4)</label>
-              <input type="number" id="numChildren" min="0" max="4" required />
-            </div>
-            <div class="form-input-wrapper">
-              <label for="numInfants">Number of Infants (max 4)</label>
-              <input type="number" id="numInfants" min="0" max="4" required />
-            </div>
+          <div class="form-input-wrapper">
+            <label for="numAdults">Number of Adults</label>
+            <input class="input-text" type="number" id="numAdults" min="0" max="4" required />
           </div>
-          <button type="submit">Search</button>
+          <div class="form-input-wrapper">
+            <label for="numChildren">Number of Children</label>
+            <input class="input-text" type="number" id="numChildren" min="0" max="4" required />
+          </div>
+          <div class="form-input-wrapper">
+            <label for="numInfants">Number of Infants</label>
+            <input class="input-text" type="number" id="numInfants" min="0" max="4" required />
+          </div>
           <div id="formMessage"></div>
+          <button type="submit">Search</button>
         </form>
       </div>
     </div>
