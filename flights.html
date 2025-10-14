@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>Travel Site | Flights</title>
+    <link rel="stylesheet" href="styles/common.css">
+  </head>
+  <body>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/pages/flights.js"></script>
+    <div id="main" class="main">
+      <div id="content" class="content">
+        <h1>Flights</h1>
+        <form id="flightForm">
+          <div class="form-input-wrapper">
+            <label for="tripType">Type of Trip</label>
+            <select class="input-text" id="tripType" required>
+              <option value="" disabled selected>Select type</option>
+              <option value="oneway">One Way</option>
+              <option value="roundtrip">Round Trip</option>
+            </select>
+          </div>
+          <div class="form-input-wrapper">
+            <label for="origin">Origin</label>
+            <input class="input-text" type="text" id="origin" placeholder="Origin" required />
+          </div>
+          <div class="form-input-wrapper">
+            <label for="destination">Destination</label>
+            <input class="input-text" type="text" id="destination" placeholder="Destination" required />
+          </div>
+          <div class="form-input-wrapper">
+            <label for="departureDate">Departure Date</label>
+            <input class="input-text" type="date" id="departureDate" required />
+          </div>
+          <div class="form-input-wrapper">
+            <label for="arrivingDate">Arriving Date</label>
+            <input class="input-text" type="date" id="arrivingDate" required />
+          </div>
+          <div class="form-input-wrapper passenger-icon">
+            <span>Passenger Info</span>
+            <button type="button" id="passengerIcon"><i class="ph ph-user"></i></button>
+          </div>
+          <div id="passengerForm" style="display:none;">
+            <div class="form-input-wrapper">
+              <label for="numAdults">Number of Adults (max 4)</label>
+              <input type="number" id="numAdults" min="0" max="4" required />
+            </div>
+            <div class="form-input-wrapper">
+              <label for="numChildren">Number of Children (max 4)</label>
+              <input type="number" id="numChildren" min="0" max="4" required />
+            </div>
+            <div class="form-input-wrapper">
+              <label for="numInfants">Number of Infants (max 4)</label>
+              <input type="number" id="numInfants" min="0" max="4" required />
+            </div>
+          </div>
+          <button type="submit">Search</button>
+          <div id="formMessage"></div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
