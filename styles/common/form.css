@@ -5,6 +5,16 @@ form {
   max-width: 480px;
 }
 
+.form-section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding-left: 16px;
+  border-left-style: solid;
+  border-width: 2px;
+  border-color: #C4C4C4;
+}
+
 .form-input-wrapper {
   display: flex;
   flex-direction: row;
