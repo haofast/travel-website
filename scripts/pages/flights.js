@@ -56,31 +56,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const numChildren = flightForm["numChildren"].value.trim();
     const numInfants = flightForm["numInfants"].value.trim();
 
-    const fieldToNameMappings = tripType === "roundtrip" ? [
-      { value: tripType, name: "Type of trip" },
-      { value: origin, name: "Origin" },
-      { value: destination, name: "Destination" },
-      { value: departureFlightDate, name: "Departing flight date" },
-      { value: arrivingFlightDate, name: "Arriving flight date" },
-      { value: numAdults, name: "Number of adults" },
-      { value: numChildren, name: "Number of children" },
-      { value: numInfants, name: "Number of infants" },
-    ] : [
-      { value: tripType, name: "Type of trip" },
-      { value: origin, name: "Origin" },
-      { value: destination, name: "Destination" },
-      { value: departureFlightDate, name: "Departing flight date" },
-      { value: numAdults, name: "Number of adults" },
-      { value: numChildren, name: "Number of children" },
-      { value: numInfants, name: "Number of infants" },
-    ];
+    const fieldNameToValueMap = new Map([
+      ["Type of trip", tripType],
+      ["Origin", origin],
+      ["Destination", destination],
+      ["Departing flight date", departureFlightDate],
+      ["Arriving flight date", arrivingFlightDate],
+      ["Number of adults", numAdults],
+      ["Number of children", numChildren],
+      ["Number of infants", numInfants],
+    ]);
 
-    for (const mapping of fieldToNameMappings) {
-      if (!mapping.value.trim()) {
-        Form.setFailMessage(`${mapping.name} is required.`);
-        if (mapping.name.toLowerCase().includes("number of")) {
-          Form.setElementVisibility("passengerSection", true);
-        }
+    if (tripType === "oneway") {
+      fieldNameToValueMap.delete("Arriving flight date");
+    }
+
+    for (const [key, value] of fieldNameToValueMap.entries()) {
+      if (!value) {
+        if (key.includes("Number of")) Form.setElementVisibility("passengerSection", true);
+        Form.setFailMessage(`${key} is required.`);
         return false;
       }
     }
@@ -123,6 +117,17 @@ document.addEventListener("DOMContentLoaded", () => {
       Form.setFailMessage("Number of passengers for each category cannot be more than 4.");
       Form.setElementVisibility("passengerSection", true);
       return false;
+    }
+
+    const formOutput = document.getElementById("formOutput");
+    const list = document.createElement("ul");
+    formOutput.innerHTML = "";
+    formOutput.appendChild(list);
+
+    for (const [key, value] of fieldNameToValueMap.entries()) {
+      const listItem = document.createElement("li");
+      listItem.textContent = `${key}: ${value}`;
+      list.appendChild(listItem);
     }
 
     Form.setSuccessMessage("Form submitted!");
