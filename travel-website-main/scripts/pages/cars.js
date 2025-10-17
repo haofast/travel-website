@@ -39,16 +39,16 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
 
-    if (!(checkinDate >= startDate && checkinDate < endDate)) {
+        if (!(checkinDate >= startDate && checkinDate < endDate)) {
             Form.setFailMessage("Please enter a valid check in date. Date must be on or after September 1st, 2024 and before December 1st, 2024.");
             return false;
         }
 
-    if (!(checkoutDate > checkinDate && checkoutDate <= endDate)) {
-        Form.setFailMessage("Please enter a valid check in date. Date must be after your check in date and before December 1st, 2024.");
+        if (!(checkoutDate > checkinDate && checkoutDate <= endDate)) {
+            Form.setFailMessage("Please enter a valid check in date. Date must be after your check in date and before December 1st, 2024.");
             return false;
         }
-        const options = {year: 'numeric', month: 'short', day: 'numeric' };
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
 
         const normIn = checkinDate.toLocaleDateString('en-US', options);
         const normOut = checkoutDate.toLocaleDateString('en-US', options);
