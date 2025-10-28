@@ -34,6 +34,7 @@ function createNavbar() {
   navbar.className = "navbar";
   navbar.innerHTML = (`
     <a class="navbar-link" href="./index.html">Home<a/>
+    <a class="navbar-link" href="./cart.html">Cart<a/>
     <a class="navbar-link" href="./stays.html">Stays<a/>
     <a class="navbar-link" href="./flights.html">Flights<a/>
     <a class="navbar-link" href="./cars.html">Cars<a/>

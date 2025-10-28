@@ -31,9 +31,9 @@
               <label for="departureFlightDate">Departure Flight Date</label>
               <input class="input-text" id="departureFlightDate" type="date" />
             </div>
-            <div class="form-input-wrapper" id="arrivingFlightDateInputWrapper">
-              <label for="arrivingFlightDate">Arriving Flight Date</label>
-              <input class="input-text" id="arrivingFlightDate" type="date" />
+            <div class="form-input-wrapper" id="returningFlightDateInputWrapper">
+              <label for="returningFlightDate">Returning Flight Date</label>
+              <input class="input-text" id="returningFlightDate" type="date" />
             </div>
           </div>
           <div class="form-input-wrapper">
@@ -55,9 +55,11 @@
             </div>
           </div>
           <div id="formMessage"></div>
-          <div id="formOutput"></div>
           <button type="submit">Search</button>
         </form>
+        <div id="formOutput"></div>
+        <div id="departingFlightsTableWrapper"></div>
+        <div id="returningFlightsTableWrapper"></div>
       </div>
     </div>
   </body>
