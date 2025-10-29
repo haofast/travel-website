@@ -7,3 +7,4 @@
 ## Starting the Server
 
 - execute `node server.js` in the root of the project
+- go to `http://localhost:8080/pages/index.html` in your browser

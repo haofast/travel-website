@@ -33,13 +33,13 @@ function createNavbar() {
   const navbar = document.createElement("div");
   navbar.className = "navbar";
   navbar.innerHTML = (`
-    <a class="navbar-link" href="index">Home<a/>
-    <a class="navbar-link" href="cart">Cart<a/>
-    <a class="navbar-link" href="stays">Stays<a/>
-    <a class="navbar-link" href="flights">Flights<a/>
-    <a class="navbar-link" href="cars">Cars<a/>
-    <a class="navbar-link" href="cruises">Cruises<a/>
-    <a class="navbar-link" href="contact">Contact Us<a/>`);
+    <a class="navbar-link" href="index.html">Home<a/>
+    <a class="navbar-link" href="cart.html">Cart<a/>
+    <a class="navbar-link" href="stays.html">Stays<a/>
+    <a class="navbar-link" href="flights.html">Flights<a/>
+    <a class="navbar-link" href="cars.html">Cars<a/>
+    <a class="navbar-link" href="cruises.html">Cruises<a/>
+    <a class="navbar-link" href="contact.html">Contact Us<a/>`);
   return navbar;
 }
 
