@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Travel Site | Flights</title>
+    <link rel="stylesheet" href="../styles/common.css">
+  </head>
+  <body>
+    <script type="module" src="../scripts/common.js"></script>
+    <script type="module" src="../scripts/pages/flights.js"></script>
+    <div id="main" class="main">
+      <div id="content" class="content">
+        <h1>Flights</h1>
+        <form id="flightForm">
+          <div class="form-input-wrapper">
+            <label for="tripType">Type of Trip</label>
+            <select class="input-text" id="tripType">
+              <option value="" disabled selected>Select type</option>
+              <option value="oneway">One Way</option>
+              <option value="roundtrip">Round Trip</option>
+            </select>
+          </div>
+          <div class="form-section invisible" id="formSection">
+            <div class="form-input-wrapper">
+              <label for="origin">Origin</label>
+              <input class="input-text" id="origin" type="text" placeholder="Origin" />
+            </div>
+            <div class="form-input-wrapper">
+              <label for="destination">Destination</label>
+              <input class="input-text" id="destination" type="text" placeholder="Destination" />
+            </div>
+            <div class="form-input-wrapper">
+              <label for="departureDate">Departure Flight Date</label>
+              <input class="input-text" id="departureDate" type="date" />
+            </div>
+            <div class="form-input-wrapper" id="returningDateInputWrapper">
+              <label for="returningDate">Returning Flight Date</label>
+              <input class="input-text" id="returningDate" type="date" />
+            </div>
+          </div>
+          <div class="form-input-wrapper">
+            <span>Passenger Info</span>
+            <button type="button" id="passengerButton"><i class="ph ph-user"></i></button>
+          </div>
+          <div class="form-section invisible" id="passengerSection">
+            <div class="form-input-wrapper">
+              <label for="numAdults">Number of Adults</label>
+              <input class="input-text" id="numAdults" type="number" min="0" />
+            </div>
+            <div class="form-input-wrapper">
+              <label for="numChildren">Number of Children</label>
+              <input class="input-text" id="numChildren" type="number" min="0" />
+            </div>
+            <div class="form-input-wrapper">
+              <label for="numInfants">Number of Infants</label>
+              <input class="input-text" id="numInfants" type="number" min="0" />
+            </div>
+          </div>
+          <div id="formMessage"></div>
+          <button type="submit">Search</button>
+        </form>
+        <div id="formOutput"></div>
+        <div id="departingFlightsTableWrapper"></div>
+        <div id="returningFlightsTableWrapper"></div>
+      </div>
+    </div>
+  </body>
+</html>
