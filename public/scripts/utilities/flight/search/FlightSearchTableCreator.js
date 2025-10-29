@@ -2,10 +2,11 @@ import { Cart } from "../../Cart.js";
 import { FLIGHT_TABLE_COLUMNS_NAMES } from "../FlightConstants.js";
 import { FlightTicket } from "../FlightTicket.js";
 
-export class FlightTableCreator {
-  constructor(flightsData, submissionData) {
-    this.flightsData = flightsData;
-    this.submissionData = submissionData;
+export class FlightSearchTableCreator {
+
+  constructor(flightListings, searchSubmissionData) {
+    this.flightListings = flightListings;
+    this.searchSubmissionData = searchSubmissionData;
   }
 
   createFlightsTable() {
@@ -26,21 +27,21 @@ export class FlightTableCreator {
     });
 
     // build data rows
-    this.flightsData.forEach((flightData) => {
-      const dataRow = this.createFlightsTableDataRow(flightData);
+    this.flightListings.forEach((flightListing) => {
+      const dataRow = this.createFlightsTableDataRow(flightListing);
       tableBody.appendChild(dataRow);
     });
 
     return table;
   }
 
-  createFlightsTableDataRow(flightData) {
+  createFlightsTableDataRow(flightListing) {
     const dataRow = document.createElement("tr");
 
     // create data cells
-    this.getFlightDetailsListForRow(flightData).forEach((cellValue) => {
+    this.getFlightDetailsListForRow(flightListing).forEach((detail) => {
       const dataCell = document.createElement("td");
-      dataCell.textContent = cellValue;
+      dataCell.textContent = detail;
       dataRow.appendChild(dataCell);
     });
 
@@ -56,26 +57,26 @@ export class FlightTableCreator {
 
     // add cart button action
     cartButton.addEventListener("click", () => {
-      Cart.addFlight(flightData.id, this.submissionData);
-      alert(`Flight ${flightData.id} added to cart!`);
+      Cart.addFlight(flightListing.id, this.searchSubmissionData);
+      alert(`Flight ${flightListing.id} added to cart!`);
     });
 
     return dataRow;
   }
 
-  getFlightDetailsListForRow(flightData) {
-    const flightDetails = new FlightTicket(flightData, this.submissionData);
+  getFlightDetailsListForRow(flightListing) {
+    const flightTicket = new FlightTicket(flightListing, this.searchSubmissionData);
 
     return [
-      flightData.id,
-      flightData.origin,
-      flightData.destination,
-      `${flightData.departureDate} ${flightData.departureTime}`,
-      `${flightData.arrivalDate} ${flightData.arrivalTime}`,
-      flightData.availableSeats,
-      `$${flightDetails.getPriceForAdults()}`,
-      `$${flightDetails.getPriceForChildren()}`,
-      `$${flightDetails.getPriceForInfants()}`,
+      flightListing.id,
+      flightListing.origin,
+      flightListing.destination,
+      `${flightListing.departureDate} ${flightListing.departureTime}`,
+      `${flightListing.arrivalDate} ${flightListing.arrivalTime}`,
+      flightListing.availableSeats,
+      `$${flightTicket.getPricePerAdult()}`,
+      `$${flightTicket.getPricePerChild()}`,
+      `$${flightTicket.getPricePerInfant()}`,
     ];
   }
 }

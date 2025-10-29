@@ -1,18 +1,26 @@
-import { getStateAbbreviation } from "../location.js";
-import { isValidDate } from "../dateValidation.js";
+import { getStateAbbreviation } from "../../location.js";
+import { isValidDate } from "../../dateValidation.js";
 import {
   FieldIDs,
   FieldNames,
   TripTypeIDs,
   FORM_ID,
   MAX_PASSENGERS_PER_CATEGORY,
-  PLACEHOLDER_SUBMISSION_DATA,
   VALID_STATES,
-} from "./FlightConstants.js";
+} from "../FlightConstants.js";
 
 export class FlightSearchSubmission {
 
-  data = structuredClone(PLACEHOLDER_SUBMISSION_DATA);
+  data = {
+    tripType: "",
+    origin: "",
+    destination: "",
+    departureDate: "",
+    returningDate: "",
+    numAdults: NaN,
+    numChildren: NaN,
+    numInfants: NaN,
+  };
 
   constructor() {
     const form = document.forms[FORM_ID];
@@ -28,7 +36,7 @@ export class FlightSearchSubmission {
 
   validate() {
     for (const [fieldName, fieldValue] of this.getFieldNameToValueMap()) {
-      if (fieldValue || (fieldName === FieldNames.RETURNING_DATE && this.isFlightOneWay())) continue;
+      if (this.isNotNullOrUndefinedOrEmptyString(fieldValue) || (fieldName === FieldNames.RETURNING_DATE && this.isFlightOneWay())) continue;
       return [`${fieldName.toUpperCase().replace(" ", "_")}_REQUIRED`, `${fieldName} is required.`];
     }
 
@@ -63,6 +71,10 @@ export class FlightSearchSubmission {
     return new Map(Object.entries(FieldNames).map(([key, fieldName]) => (
       [fieldName, this.data[FieldIDs[key]]]
     )));
+  }
+
+  isNotNullOrUndefinedOrEmptyString(value) {
+    return value !== null && value !== undefined && value !== '';
   }
 
   isFlightOneWay() {

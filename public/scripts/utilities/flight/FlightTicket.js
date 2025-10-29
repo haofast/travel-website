@@ -2,13 +2,13 @@ import { TripTypeIDs } from "./FlightConstants.js";
 
 export class FlightTicket {
 
-  constructor(flightData, submissionData) {
-    this.flightData = flightData;
-    this.submissionData = submissionData;
+  constructor(listing, designations) {
+    this.listing = listing;
+    this.designations = designations;
   }
 
   getPricePerAdult() {
-    return this.flightData.price.toFixed(2);
+    return this.listing.price.toFixed(2);
   }
 
   getPricePerChild() {
@@ -20,15 +20,15 @@ export class FlightTicket {
   }
 
   getPriceForAdults() {
-    return this.submissionData.numAdults * this.getPricePerAdult();
+    return this.designations.numAdults * this.getPricePerAdult();
   }
 
   getPriceForChildren() {
-    return this.submissionData.numChildren * this.getPricePerChild();
+    return this.designations.numChildren * this.getPricePerChild();
   }
 
   getPriceForInfants() {
-    return this.submissionData.numInfants * this.getPricePerInfant();
+    return this.designations.numInfants * this.getPricePerInfant();
   }
 
   getTotalPrice() {
@@ -36,11 +36,11 @@ export class FlightTicket {
   }
 
   getTotalPassengers() {
-    return this.submissionData.numAdults + this.submissionData.numChildren + this.submissionData.numInfants;
+    return this.designations.numAdults + this.designations.numChildren + this.designations.numInfants;
   }
 
   getFlightTypeLabel() {
-    switch (this.submissionData.tripType) {
+    switch (this.designations.tripType) {
       case TripTypeIDs.ONE_WAY: return "One Way";
       case TripTypeIDs.ROUND_TRIP: return "Round Trip";
       default: throw new Error(`Unknown flight type: ${flightType}`);
