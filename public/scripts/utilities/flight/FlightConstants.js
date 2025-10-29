@@ -4,17 +4,6 @@ export const VALID_STATES = ["CA", "TX"];
 
 export const MAX_PASSENGERS_PER_CATEGORY = 4;
 
-export const PLACEHOLDER_SUBMISSION_DATA = {
-  tripType: "",
-  origin: "",
-  destination: "",
-  departureDate: "",
-  returningDate: "",
-  numAdults: NaN,
-  numChildren: NaN,
-  numInfants: NaN,
-};
-
 export const TripTypeIDs = {
   ONE_WAY: "oneway",
   ROUND_TRIP: "roundtrip",

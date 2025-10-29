@@ -1,7 +1,7 @@
-import { FlightSearchSubmission } from "../utilities/flight/FlightSearchSubmission.js";
-import { FlightSearchForm } from "../utilities/flight/dom/FlightSearchForm.js";
+import { FlightSearcher } from "../utilities/flight/search/FlightSearcher.js";
+import { FlightSearchForm } from "../utilities/flight/search/FlightSearchForm.js";
+import { FlightSearchSubmission } from "../utilities/flight/search/FlightSearchSubmission.js";
 import { PASSENGER_VALIDATION_STATUSES, TripTypeIDs } from "../utilities/flight/FlightConstants.js";
-import { FlightLookup } from "../utilities/flight/FlightLookup.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("tripType").addEventListener("change", (event) => {
     FlightSearchForm.setElementVisibility("formSection", event.target.value);
-    FlightSearchForm.setElementVisibility("returningDateInputWrapper", event.target.value === "roundtrip");
+    FlightSearchForm.setElementVisibility("returningDateInputWrapper", event.target.value === TripTypeIDs.ROUND_TRIP);
   });
 
   document.forms["flightForm"].addEventListener("submit", (event) => {
@@ -26,15 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
       : onValidationSuccess(submission);
   });
 
-  function onValidationSuccess(submission) {
+  async function onValidationSuccess(submission) {
     FlightSearchForm.setSuccessMessage("Search successful!");
     FlightSearchForm.displayUserInput(submission.getFieldNameToValueMap());
 
-    const flightLookup = new FlightLookup(submission);
-    FlightSearchForm.displayDepartingFlightsTable(flightLookup.getDepartingFlights(), submission.data);
+    const flightSearcher = new FlightSearcher(submission);
+    FlightSearchForm.displayDepartingFlightsTable(await flightSearcher.getDepartingFlights(), submission.data);
 
     if (submission.data.tripType === TripTypeIDs.ROUND_TRIP) {
-      FlightSearchForm.displayReturningFlightsTable(flightLookup.getReturningFlights(), submission.data);
+      FlightSearchForm.displayReturningFlightsTable(await flightSearcher.getReturningFlights(), submission.data);
     }
   }
 

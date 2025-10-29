@@ -20,16 +20,22 @@ export class Cart {
     return Cart.getFlights()[flightID];
   }
 
-  static addFlight(flightID, submissionData) {
+  static addFlight(flightID, flightCartData) {
     const data = Cart.getData();
 
     data.flights[flightID] = {
-      tripType: submissionData.tripType,
-      numAdults: submissionData.numAdults,
-      numChildren: submissionData.numChildren,
-      numInfants: submissionData.numInfants,
+      tripType: flightCartData.tripType,
+      numAdults: flightCartData.numAdults,
+      numChildren: flightCartData.numChildren,
+      numInfants: flightCartData.numInfants,
     };
 
+    Cart.setData(data);
+  }
+
+  static removeFlight(flightID) {
+    const data = Cart.getData();
+    delete data.flights[flightID]
     Cart.setData(data);
   }
 }

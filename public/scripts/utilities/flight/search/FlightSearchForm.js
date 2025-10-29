@@ -1,5 +1,5 @@
 import { Form } from "../../Form.js";
-import { FlightTableCreator } from "./FlightTableCreator.js";
+import { FlightSearchTableCreator } from "./FlightSearchTableCreator.js";
 
 export class FlightSearchForm extends Form {
 
@@ -9,23 +9,23 @@ export class FlightSearchForm extends Form {
     formOutput.innerHTML = "<h2>Search Criteria</h2>";
     formOutput.appendChild(list);
 
-    for (const [key, value] of fieldNameToValueMap.entries()) {
+    for (const [fieldName, fieldValue] of fieldNameToValueMap.entries()) {
       const listItem = document.createElement("li");
-      listItem.textContent = `${key}: ${value}`;
+      listItem.textContent = `${fieldName}: ${fieldValue}`;
       list.appendChild(listItem);
     }
   }
 
-  static displayDepartingFlightsTable(flightsData, submissionData) {
+  static displayDepartingFlightsTable(flightListings, searchSubmissionData) {
     const tableWrapper = document.getElementById("departingFlightsTableWrapper");
     tableWrapper.innerHTML = "<h2>Departing Flights</h2>";
-    tableWrapper.appendChild(new FlightTableCreator(flightsData, submissionData).createFlightsTable());
+    tableWrapper.appendChild(new FlightSearchTableCreator(flightListings, searchSubmissionData).createFlightsTable());
   }
 
-  static displayReturningFlightsTable(flightsData, submissionData) {
+  static displayReturningFlightsTable(flightListings, searchSubmissionData) {
     const tableWrapper = document.getElementById("returningFlightsTableWrapper");
     tableWrapper.innerHTML = "<h2>Returning Flights</h2>";
-    tableWrapper.appendChild(new FlightTableCreator(flightsData, submissionData).createFlightsTable());
+    tableWrapper.appendChild(new FlightSearchTableCreator(flightListings, searchSubmissionData).createFlightsTable());
   }
 
   static clearUserInput() {
