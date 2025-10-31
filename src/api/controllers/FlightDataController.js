@@ -65,7 +65,7 @@ export class FlightDataController {
     const allBookings = this.getAllBookings();
 
     const newBooking = this.req.body;
-    const targetedListing = this.findListing(allListings, newBooking.id);
+    const targetedListing = this.findListing(allListings, newBooking.flightID);
 
     const numPassengers = newBooking.passengers.length;
     targetedListing.availableSeats = targetedListing.availableSeats - numPassengers;

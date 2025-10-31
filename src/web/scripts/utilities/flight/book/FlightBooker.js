@@ -22,7 +22,7 @@ export class FlightBooker {
       passengers: this.bookSubmission.data.passengers,
     };
 
-    // Cart.removeFlight(this.flightTicket.listing.id);
-    await FlightDataInterface.addBooking(bookedFlightData);
+    Cart.removeFlight(this.flightTicket.listing.id);
+    return await FlightDataInterface.addBooking(bookedFlightData);
   }
 }
