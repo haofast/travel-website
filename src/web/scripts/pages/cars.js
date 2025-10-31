@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const checkinDate = new Date(carForm["checkinDate"].value.trim());
     const checkoutDate = new Date(carForm["checkoutDate"].value.trim());
 
-    startDate = new Date("2024-09-01");
-    endDate = new Date("2024-12-01");
+    const startDate = new Date("2024-09-01");
+    const endDate = new Date("2024-12-01");
 
     if (city.empty) {
       Form.setFailMessage("Please enter a city.");

@@ -17,7 +17,7 @@ app.get('/api/flight/listings', (req, res) => {
 });
 
 app.get('/api/flight/listings/:flightID', (req, res) => {
-  new FlightDataController(req, res).respondWithListing()
+  new FlightDataController(req, res).respondWithListing();
 });
 
 app.post('/api/flight/booking', (req, res) => {
