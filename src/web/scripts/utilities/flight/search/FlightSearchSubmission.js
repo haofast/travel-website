@@ -36,7 +36,7 @@ export class FlightSearchSubmission {
 
   validate() {
     for (const [fieldName, fieldValue] of this.getFieldNameToValueMap()) {
-      if (this.isNotNullOrUndefinedOrEmptyString(fieldValue) || (fieldName === FieldNames.RETURNING_DATE && this.isFlightOneWay())) continue;
+      if (this.isValidValue(fieldValue) || (fieldName === FieldNames.RETURNING_DATE && this.isFlightOneWay())) continue;
       return [`${fieldName.toUpperCase().replace(" ", "_")}_REQUIRED`, `${fieldName} is required.`];
     }
 
@@ -73,8 +73,8 @@ export class FlightSearchSubmission {
     )));
   }
 
-  isNotNullOrUndefinedOrEmptyString(value) {
-    return value !== null && value !== undefined && value !== '';
+  isValidValue(value) {
+    return value !== null && value !== undefined && value !== '' && !isNaN(value);
   }
 
   isFlightOneWay() {
