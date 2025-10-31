@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const children = staysForm["numChildren"].value.trim();
     const infants = staysForm["numInfants"].value.trim();
 
-    startDate = new Date("2024-09-01");
-    endDate = new Date("2024-12-01");
+    const startDate = new Date("2024-09-01");
+    const endDate = new Date("2024-12-01");
 
     const texasCitiesLower = texasCities.map(city => city.toLowerCase());
     const calCitiesLower = calCities.map(city => city.toLowerCase());

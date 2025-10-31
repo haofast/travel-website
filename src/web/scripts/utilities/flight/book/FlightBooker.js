@@ -10,7 +10,8 @@ export class FlightBooker {
 
   async bookFlight() {
     const bookedFlightData = {
-      id: this.flightTicket.listing.id,
+      bookingNumber: crypto.randomUUID(),
+      flightID: this.flightTicket.listing.id,
       origin: this.flightTicket.listing.origin,
       destination: this.flightTicket.listing.destination,
       departureDate: this.flightTicket.listing.departureDate,
@@ -18,11 +19,10 @@ export class FlightBooker {
       departureTime: this.flightTicket.listing.departureTime,
       arrivalTime: this.flightTicket.listing.arrivalTime,
       totalPrice: this.flightTicket.getTotalPrice(),
-      bookingNumber: crypto.randomUUID(),
       passengers: this.bookSubmission.data.passengers,
     };
 
     Cart.removeFlight(this.flightTicket.listing.id);
-    await FlightDataInterface.addBooking(bookedFlightData);
+    return await FlightDataInterface.addBooking(bookedFlightData);
   }
 }
