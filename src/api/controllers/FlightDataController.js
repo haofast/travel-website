@@ -1,36 +1,9 @@
-import fs from "fs";
+import { DataController } from "../utilities/DataController.js";
 
-export class FlightDataController {
+export class FlightDataController extends DataController {
 
   static LISTINGS_PATH = "src/api/data/flight/FlightListings.json";
   static BOOKINGS_PATH = "src/api/data/flight/FlightBookings.json";
-
-  constructor(req, res) {
-    this.req = req;
-    this.res = res;
-  }
-
-  getFileJson(path, resourceName) {
-    try {
-      const data = fs.readFileSync(path, "utf8");
-      return JSON.parse(data);
-
-    } catch (error) {
-      console.error(error);
-      this.res.status(500).json({ error: `Failed to read ${resourceName}` })
-    }
-  }
-
-  setFileJson(path, resourceName, data) {
-    try {
-      const stringifiedData = JSON.stringify(data, null, 2);
-      fs.writeFileSync(path, stringifiedData, "utf8");
-
-    } catch (error) {
-      console.error(error);
-      this.res.status(500).json({ error: `Failed to write ${resourceName}` })
-    }
-  }
 
   getAllListings() {
     return this.getFileJson(FlightDataController.LISTINGS_PATH, 'listings');
