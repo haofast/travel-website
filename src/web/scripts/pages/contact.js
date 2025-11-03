@@ -1,76 +1,70 @@
+import { Form } from "../utilities/Form.js";
+
 const NAME_REGEX = /^[A-Z][a-z]+$/;
 const PHONE_REGEX = /^\u0028\d{3}\u0029 \d{3}-\d{4}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-class Form {
-  static getMessageElement() {
-    return document.getElementById("formMessage");
-  }
-
-  static setMessageText(text) {
-    Form.getMessageElement().textContent = text;
-  }
-
-  static setFailMessage(text) {
-    Form.getMessageElement().className = "form-message form-message-failure";
-    Form.setMessageText(text);
-  }
-
-  static setSuccessMessage(text) {
-    Form.getMessageElement().className = "form-message form-message-success";
-    Form.setMessageText(text);
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.forms["contactForm"];
 
-  contactForm.addEventListener("submit", (event) => {
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const firstName = contactForm["firstName"].value.trim();
-    const lastName = contactForm["lastName"].value.trim();
-    const phone = contactForm["phone"].value.trim();
-    const gender = contactForm["gender"].value.trim();
-    const email = contactForm["email"].value.trim();
-    const comment = contactForm["comment"].value.trim();
+    const validationMessage = validateForm();
 
-    if (!NAME_REGEX.test(firstName)) {
-      Form.setFailMessage("First name must start with a capital letter and contain only alphabetic characters.");
-      return false;
+    if (validationMessage) {
+      Form.setFailMessage(validationMessage);
+      return;
     }
 
-    if (!NAME_REGEX.test(lastName)) {
-      Form.setFailMessage("Last name must start with a capital letter and contain only alphabetic characters.");
-      return false;
-    }
-
-    if (firstName.toLowerCase() === lastName.toLowerCase()) {
-      Form.setFailMessage("First name and last name cannot be the same.");
-      return false;
-    }
-
-    if (!PHONE_REGEX.test(phone)) {
-      Form.setFailMessage("Phone number must be formatted as (ddd) ddd-dddd.");
-      return false;
-    }
-
-    if (!gender) {
-      Form.setFailMessage("Please select your gender.");
-      return false;
-    }
-
-    if (!EMAIL_REGEX.test(email)) {
-      Form.setFailMessage("Email address must contain @ and .");
-      return false;
-    }
-
-    if (comment.length < 10) {
-      Form.setFailMessage("Comment must be at least 10 characters long.");
-      return false;
-    }
-
+    await uploadContactSubmission();
     Form.setSuccessMessage("Form submitted!");
     return true;
   });
+
+  function validateForm() {
+    const data = getFormData();
+
+    if (!NAME_REGEX.test(data.firstName)) {
+      return ("First name must start with a capital letter and contain only alphabetic characters.");
+    }
+    if (!NAME_REGEX.test(data.lastName)) {
+      return ("Last name must start with a capital letter and contain only alphabetic characters.");
+    }
+    if (data.firstName.toLowerCase() === data.lastName.toLowerCase()) {
+      return ("First name and last name cannot be the same.");
+    }
+    if (!PHONE_REGEX.test(data.phone)) {
+      return ("Phone number must be formatted as (ddd) ddd-dddd.");
+    }
+    if (!data.gender) {
+      return ("Please select your gender.");
+    }
+    if (!EMAIL_REGEX.test(data.email)) {
+      return ("Email address must contain @ and .");
+    }
+    if (data.comment.length < 10) {
+      return ("Comment must be at least 10 characters long.");
+    }
+    return null;
+  }
+
+  function getFormData() {
+    return {
+      firstName: contactForm["firstName"].value.trim(),
+      lastName: contactForm["lastName"].value.trim(),
+      phone: contactForm["phone"].value.trim(),
+      gender: contactForm["gender"].value.trim(),
+      email: contactForm["email"].value.trim(),
+      comment: contactForm["comment"].value.trim(),
+    };
+  }
+
+  async function uploadContactSubmission() {
+    return await fetch(`http://localhost:8080/api/contact/submission`, {
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(getFormData()),
+      method: "POST",
+    });
+  }
 });

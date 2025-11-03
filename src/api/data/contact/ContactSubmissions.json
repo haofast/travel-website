@@ -1,0 +1,10 @@
+[
+  {
+    "firstName": "Peter",
+    "lastName": "Griffin",
+    "phone": "(201) 555-0123",
+    "gender": "male",
+    "email": "test@email.com",
+    "comment": "some comment"
+  }
+]
