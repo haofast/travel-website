@@ -1,5 +1,12 @@
-const VALID_DATE_REGEX = /^(2024-(09|10|11|12)-(0[1-9]|[12][0-9]|30|31))$/;
+const DATE_FORMAT_OPTIONS = { year: "numeric", month: "short", day: "numeric" };
+const START_VALID_DATE_TIME = new Date("2024-09-01");
+const END_VALID_DATE_TIME = new Date("2024-12-01");
 
 export function isValidDate(dateString) {
-  return VALID_DATE_REGEX.test(dateString);
+  const date = new Date(dateString);
+  return (START_VALID_DATE_TIME <= date) && (date < END_VALID_DATE_TIME);
+}
+
+export function getLocalizedDateString(dateString) {
+  return new Date(dateString).toLocaleDateString("en-US", DATE_FORMAT_OPTIONS);
 }

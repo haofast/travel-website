@@ -6,6 +6,7 @@
     "serve": "node server.js"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "xml2json": "^0.12.0"
   }
 }

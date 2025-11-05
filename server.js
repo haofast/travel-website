@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { FlightDataController } from "./src/api/controllers/FlightDataController.js";
 import { ContactDataController } from "./src/api/controllers/ContactDataController.js";
+import { CarDataController } from "./src/api/controllers/CarDataController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +29,18 @@ app.post('/api/flight/booking', (req, res) => {
 app.post('/api/contact/submission', (req, res) => {
   new ContactDataController(req, res).saveSubmission();
 })
+
+app.get('/api/car/listings', (req, res) => {
+  new CarDataController(req, res).respondWithListings();
+});
+
+app.get('/api/car/listings/:carID', (req, res) => {
+  new CarDataController(req, res).respondWithListing();
+});
+
+app.post('/api/car/booking', (req, res) => {
+  new CarDataController(req, res).bookCar();
+});
 
 app.listen(PORT, () => {
   console.log('Web server is running on http://localhost:8080');
