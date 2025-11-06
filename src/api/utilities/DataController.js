@@ -1,4 +1,5 @@
 import fs from "fs";
+import xmlParser from "xml2json";
 
 export class DataController {
 
@@ -14,7 +15,7 @@ export class DataController {
 
     } catch (error) {
       console.error(error);
-      this.res.status(500).json({ error: `Failed to read ${resourceName}` })
+      this.res.status(500).json({ error: `Failed to read ${resourceName}` });
     }
   }
 
@@ -25,7 +26,29 @@ export class DataController {
 
     } catch (error) {
       console.error(error);
-      this.res.status(500).json({ error: `Failed to write ${resourceName}` })
+      this.res.status(500).json({ error: `Failed to write ${resourceName}` });
+    }
+  }
+
+  getFileXml(path, resourceName) {
+    try {
+      const data = fs.readFileSync(path, "utf8");
+      return JSON.parse(xmlParser.toJson(data));
+
+    } catch (error) {
+      console.error(error);
+      this.res.status(500).json({ error: `Failed to read ${resourceName}` });
+    }
+  }
+
+  setFileXml(path, resourceName, data) {
+    try {
+      const stringifiedData = xmlParser.toXml(JSON.stringify(data, null, 2));
+      fs.writeFileSync(path, stringifiedData, "utf8");
+
+    } catch (error) {
+      console.error(error);
+      this.res.status(500).json({ error: `Failed to write ${resourceName}` });
     }
   }
 }

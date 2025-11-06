@@ -1,7 +1,7 @@
 export class Cart {
 
   static getBlankCartData() {
-    return { flights: {} };
+    return { flights: {}, cars: [] };
   }
 
   static getData() {
@@ -36,6 +36,25 @@ export class Cart {
   static removeFlight(flightID) {
     const data = Cart.getData();
     delete data.flights[flightID]
+    Cart.setData(data);
+  }
+
+  static getCars() {
+    return Cart.getData().cars;
+  }
+
+  static addCar(carID) {
+    const data = Cart.getData();
+
+    if (!data.cars.includes(carID)) {
+      data.cars.push(carID);
+      Cart.setData(data);
+    }
+  }
+
+  static removeCar(carID) {
+    const data = Cart.getData();
+    data.cars = data.cars.filter(id => id !== carID);
     Cart.setData(data);
   }
 }
