@@ -19,13 +19,13 @@ export class FlightSearchForm extends Form {
   static displayDepartingFlightsTable(flightListings, searchSubmissionData) {
     const tableWrapper = document.getElementById("departingFlightsTableWrapper");
     tableWrapper.innerHTML = "<h2>Departing Flights</h2>";
-    tableWrapper.appendChild(new FlightSearchTableCreator(flightListings, searchSubmissionData).createFlightsTable());
+    tableWrapper.appendChild(new FlightSearchTableCreator(flightListings, searchSubmissionData).createTable());
   }
 
   static displayReturningFlightsTable(flightListings, searchSubmissionData) {
     const tableWrapper = document.getElementById("returningFlightsTableWrapper");
     tableWrapper.innerHTML = "<h2>Returning Flights</h2>";
-    tableWrapper.appendChild(new FlightSearchTableCreator(flightListings, searchSubmissionData).createFlightsTable());
+    tableWrapper.appendChild(new FlightSearchTableCreator(flightListings, searchSubmissionData).createTable());
   }
 
   static clearUserInput() {
