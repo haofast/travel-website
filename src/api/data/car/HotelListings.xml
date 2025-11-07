@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hotels>
+  <hotel>
+    <hotel-id>H1</hotel-id>
+    <hotel-name>Dallas Downtown Inn</hotel-name>
+    <city>Dallas</city>
+    <available-rooms>15</available-rooms>
+    <price-per-night>120</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H2</hotel-id>
+    <hotel-name>Austin Hill Suites</hotel-name>
+    <city>Austin</city>
+    <available-rooms>10</available-rooms>
+    <price-per-night>145</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H3</hotel-id>
+    <hotel-name>Houston Grand Plaza</hotel-name>
+    <city>Houston</city>
+    <available-rooms>20</available-rooms>
+    <price-per-night>160</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H4</hotel-id>
+    <hotel-name>San Antonio Riverfront Hotel</hotel-name>
+    <city>San Antonio</city>
+    <available-rooms>12</available-rooms>
+    <price-per-night>155</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H5</hotel-id>
+    <hotel-name>Fort Worth Heritage Inn</hotel-name>
+    <city>Fort Worth</city>
+    <available-rooms>9</available-rooms>
+    <price-per-night>130</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H6</hotel-id>
+    <hotel-name>El Paso Sunview Resort</hotel-name>
+    <city>El Paso</city>
+    <available-rooms>18</available-rooms>
+    <price-per-night>125</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H7</hotel-id>
+    <hotel-name>Galveston Beachside Resort</hotel-name>
+    <city>Galveston</city>
+    <available-rooms>11</available-rooms>
+    <price-per-night>170</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H8</hotel-id>
+    <hotel-name>Plano Comfort Lodge</hotel-name>
+    <city>Plano</city>
+    <available-rooms>8</available-rooms>
+    <price-per-night>115</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H9</hotel-id>
+    <hotel-name>Frisco Modern Suites</hotel-name>
+    <city>Frisco</city>
+    <available-rooms>14</available-rooms>
+    <price-per-night>150</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H10</hotel-id>
+    <hotel-name>Irving Lakeside Hotel</hotel-name>
+    <city>Irving</city>
+    <available-rooms>16</available-rooms>
+    <price-per-night>135</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H11</hotel-id>
+    <hotel-name>Los Angeles Grand Tower</hotel-name>
+    <city>Los Angeles</city>
+    <available-rooms>22</available-rooms>
+    <price-per-night>190</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H12</hotel-id>
+    <hotel-name>San Diego Oceanview Inn</hotel-name>
+    <city>San Diego</city>
+    <available-rooms>17</available-rooms>
+    <price-per-night>180</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H13</hotel-id>
+    <hotel-name>San Francisco Bay Hotel</hotel-name>
+    <city>San Francisco</city>
+    <available-rooms>14</available-rooms>
+    <price-per-night>210</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H14</hotel-id>
+    <hotel-name>Sacramento River Suites</hotel-name>
+    <city>Sacramento</city>
+    <available-rooms>9</available-rooms>
+    <price-per-night>160</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H15</hotel-id>
+    <hotel-name>San Jose Downtown Lodge</hotel-name>
+    <city>San Jose</city>
+    <available-rooms>11</available-rooms>
+    <price-per-night>175</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H16</hotel-id>
+    <hotel-name>Oakland Central Hotel</hotel-name>
+    <city>Oakland</city>
+    <available-rooms>10</available-rooms>
+    <price-per-night>155</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H17</hotel-id>
+    <hotel-name>Santa Barbara Coastal Resort</hotel-name>
+    <city>Santa Barbara</city>
+    <available-rooms>7</available-rooms>
+    <price-per-night>195</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H18</hotel-id>
+    <hotel-name>Long Beach Marina Suites</hotel-name>
+    <city>Long Beach</city>
+    <available-rooms>12</available-rooms>
+    <price-per-night>185</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H19</hotel-id>
+    <hotel-name>Fresno Valley Inn</hotel-name>
+    <city>Fresno</city>
+    <available-rooms>10</available-rooms>
+    <price-per-night>145</price-per-night>
+  </hotel>
+
+  <hotel>
+    <hotel-id>H20</hotel-id>
+    <hotel-name>Riverside Garden Suites</hotel-name>
+    <city>Riverside</city>
+    <available-rooms>8</available-rooms>
+    <price-per-night>150</price-per-night>
+  </hotel>
+</hotels>
