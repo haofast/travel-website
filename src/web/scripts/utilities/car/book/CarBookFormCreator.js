@@ -42,8 +42,13 @@ export class CarBookFormCreator {
 
       if (form.checkValidity()) {
         Cart.removeCar(this.carListing.id);
-        CarDataInterface.addBooking(this.carListing);
-        alert("Flight booked successfully!");
+
+        CarDataInterface.addBooking({
+          userID: localStorage.getItem("USER_ID"),
+          ...this.carListing,
+        });
+        
+        alert("Car booked successfully!");
 
         CarBookForm.refreshSelectElement();
         CarBookForm.clearForm();

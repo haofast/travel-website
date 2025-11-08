@@ -10,6 +10,7 @@ export class FlightBooker {
 
   async bookFlight() {
     const bookedFlightData = {
+      userID: localStorage.getItem('USER_ID'),
       bookingNumber: crypto.randomUUID(),
       flightID: this.flightTicket.listing.id,
       origin: this.flightTicket.listing.origin,

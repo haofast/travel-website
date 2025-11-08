@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(createFooter());
   Body.setInitialTheme();
   Content.setInitialZoom();
+  UserID.setInitialUseID();
 });
 
 class Clock {
@@ -167,5 +168,13 @@ class Content {
     localStorage.setItem("CONTENT_FONT_SIZE", fontSize)
     document.getElementById("content").style.fontSize = fontSize;
     document.getElementById("content-zoom-label").textContent = `Content Zoom: ${fontSize}`
+  }
+}
+
+class UserID {
+  static setInitialUseID() {
+    if (!localStorage.getItem('USER_ID')) {
+      localStorage.setItem('USER_ID', crypto.randomUUID());
+    }
   }
 }
