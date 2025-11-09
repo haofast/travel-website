@@ -1,4 +1,4 @@
-import { Cart } from "../../Cart.js";
+import { Cart } from "../Cart.js";
 
 export class HotelBookForm {
   static refreshSelectElement() {
