@@ -66,3 +66,87 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   });
 });
+
+async function loadHotels(city, rooms, checkinDate, checkoutDate) {
+  const container = document.getElementById("hotelResults");
+  container.innerHTML = "Loading hotels...";
+  try {
+    const res = await fetch("/api/hotel/listings");
+    if (!res.ok) {
+      container.textContent = "Error loading hotels.";
+      return;
+    }
+    const hotels = await res.json();
+    const matchingHotels = hotels.filter(h =>
+      h.city.toLowerCase() === city.toLowerCase() &&
+      Number(h["available-rooms"]) >= rooms
+    );
+    if (matchingHotels.length === 0) {
+      container.textContent = `No hotels available in ${city} with ${rooms} room(s).`;
+      return;
+    }
+    renderHotelResults(container, matchingHotels, { city, rooms, checkinDate, checkoutDate });
+  } catch (err) {
+    container.textContent = "Failed to load hotels.";
+  }
+}
+
+function renderHotelResults(container, hotels, stayInfo) {
+  container.innerHTML = "";
+  const table = document.createElement("table");
+  const header = document.createElement("tr");
+  header.innerHTML = `
+    <th>Hotel ID</th>
+    <th>Name</th>
+    <th>City</th>
+    <th>Price / Night</th>
+    <th>Available Rooms</th>
+    <th>Action</th>
+  `;
+  table.appendChild(header);
+  hotels.forEach(hotel => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${hotel["hotel-id"]}</td>
+      <td>${hotel["hotel-name"]}</td>
+      <td>${hotel.city}</td>
+      <td>$${hotel["price-per-night"]}</td>
+      <td>${hotel["available-rooms"]}</td>
+      <td><button type="button">Book</button></td>
+    `;
+    row.querySelector("button").addEventListener("click", () => {
+      bookHotel(hotel, stayInfo);
+    });
+    table.appendChild(row);
+  });
+  container.appendChild(table);
+}
+
+async function bookHotel(hotel, stayInfo) {
+  const nights = (stayInfo.checkoutDate - stayInfo.checkinDate) / (1000 * 60 * 60 * 24);
+  const pricePerNight = Number(hotel["price-per-night"]);
+  const totalPrice = nights * pricePerNight * stayInfo.rooms;
+  const booking = {
+    userId: "demoUser",
+    hotelID: hotel["hotel-id"],
+    city: hotel.city,
+    rooms: stayInfo.rooms,
+    checkInDate: stayInfo.checkinDate.toISOString().slice(0,10),
+    checkOutDate: stayInfo.checkoutDate.toISOString().slice(0,10),
+    totalPrice: totalPrice
+  };
+  try {
+    const res = await fetch("/api/hotel/booking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(booking)
+    });
+    if (!res.ok) {
+      alert("Failed to book hotel.");
+      return;
+    }
+    alert("Hotel booked successfully!");
+  } catch (err) {
+    alert("Error booking hotel.");
+  }
+}
