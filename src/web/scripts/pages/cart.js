@@ -1,9 +1,11 @@
 import { CarBookForm } from "../utilities/car/book/CarBookForm.js";
 import { FlightBookForm } from "../utilities/flight/book/FlightBookForm.js";
+import { HotelBookForm } from "../utilities/hotel/book/HotelBookForm.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   FlightBookForm.refreshSelectElement();
   CarBookForm.refreshSelectElement();
+  HotelBookForm.refreshSelectElement();
 
   document.getElementById("flightSelect").addEventListener("change", (event) => {
     event.preventDefault();
@@ -14,4 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     CarBookForm.displayForm(event.target.value);
   });
+
+  document.getElementById("hotelSelect").addEventListener("change", (event) => {
+    event.preventDefault();
+    HotelBookForm.displayForm(event.target.value);
+  });
 });
+

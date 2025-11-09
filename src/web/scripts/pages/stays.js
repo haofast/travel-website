@@ -1,4 +1,5 @@
 import { CA_CITIES, TX_CITIES } from "../utilities/locationValidation.js";
+import { Cart } from "../utilities/Cart.js";
 
 class Form {
   static getMessageElement() {
@@ -115,41 +116,30 @@ function renderHotelResults(container, hotels, stayInfo) {
       <td>${hotel.city}</td>
       <td>$${hotel["price-per-night"]}</td>
       <td>${hotel["available-rooms"]}</td>
-      <td><button type="button">Book</button></td>
+      <td><button type="button">Add to Cart</button></td>
     `;
     row.querySelector("button").addEventListener("click", () => {
-      bookHotel(hotel, stayInfo);
+      addHotelToCart(hotel, stayInfo);
     });
     table.appendChild(row);
   });
   container.appendChild(table);
 }
 
-async function bookHotel(hotel, stayInfo) {
+function addHotelToCart(hotel, stayInfo) {
   const nights = (stayInfo.checkoutDate - stayInfo.checkinDate) / (1000 * 60 * 60 * 24);
   const pricePerNight = Number(hotel["price-per-night"]);
-  const totalPrice = nights * pricePerNight * stayInfo.rooms;
-  const booking = {
-    userId: "demoUser",
+  const hotelCartItem = {
     hotelID: hotel["hotel-id"],
+    hotelName: hotel["hotel-name"],
     city: hotel.city,
     rooms: stayInfo.rooms,
-    checkInDate: stayInfo.checkinDate.toISOString().slice(0,10),
-    checkOutDate: stayInfo.checkoutDate.toISOString().slice(0,10),
-    totalPrice: totalPrice
+    checkInDate: stayInfo.checkinDate.toISOString().slice(0, 10),
+    checkOutDate: stayInfo.checkoutDate.toISOString().slice(0, 10),
+    pricePerNight: pricePerNight,
+    nights: nights
   };
-  try {
-    const res = await fetch("/api/hotel/booking", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(booking)
-    });
-    if (!res.ok) {
-      alert("Failed to book hotel.");
-      return;
-    }
-    alert("Hotel booked successfully!");
-  } catch (err) {
-    alert("Error booking hotel.");
-  }
+  Cart.addHotel(hotelCartItem);
+  alert("Hotel added to cart.");
 }
+

@@ -1,9 +1,9 @@
 export class Cart {
 
   static getBlankCartData() {
-    return { flights: {}, cars: [] };
+    return { flights: {}, cars: [], hotels: [] };
   }
-
+ 
   static getData() {
     return JSON.parse(localStorage.getItem('CART_ITEMS')) ?? Cart.getBlankCartData();
   }
@@ -55,6 +55,29 @@ export class Cart {
   static removeCar(carID) {
     const data = Cart.getData();
     data.cars = data.cars.filter(id => id !== carID);
+    Cart.setData(data);
+  }
+
+    static getHotels() {
+    const data = Cart.getData();
+    return data.hotels ?? [];
+  }
+
+  static addHotel(hotelItem) {
+    const data = Cart.getData();
+    if (!data.hotels) {
+      data.hotels = [];
+    }
+    data.hotels.push(hotelItem);
+    Cart.setData(data);
+  }
+
+  static removeHotel(index) {
+    const data = Cart.getData();
+    if (!data.hotels) {
+      return;
+    }
+    data.hotels.splice(index, 1);
     Cart.setData(data);
   }
 }
