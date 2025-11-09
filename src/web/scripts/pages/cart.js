@@ -1,6 +1,6 @@
 import { CarBookForm } from "../utilities/car/book/CarBookForm.js";
 import { FlightBookForm } from "../utilities/flight/book/FlightBookForm.js";
-import { HotelBookForm } from "../utilities/hotel/book/HotelBookForm.js";
+import { HotelBookForm } from "../utilities/hotel/HotelBookForm.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   FlightBookForm.refreshSelectElement();
