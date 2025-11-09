@@ -1,7 +1,7 @@
 import { DataController } from "../utilities/DataController.js";
 
 export class HotelDataController extends DataController {
-  static LISTINGS_PATH = "src/api/data/car/HotelListings.xml";
+  static LISTINGS_PATH = "src/api/data/hotel/HotelListings.xml";
   static BOOKINGS_PATH = "src/api/data/hotel/HotelBookings.json";
 
   getAllListings() {

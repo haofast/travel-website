@@ -63,6 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ", Number of Infants: " + infants + ", Number of Rooms needed: " + rooms;
 
     Form.setSuccessMessage(infoback);
+    
+    loadHotels(city, rooms, checkinDate, checkoutDate);
+
     return true;
   });
 });
