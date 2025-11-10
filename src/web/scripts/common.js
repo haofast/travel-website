@@ -16,7 +16,26 @@ function createHeader() {
 
 function createFooter() {
   const footer = document.createElement("footer");
-  footer.innerHTML = `<p>End of page.</p>`;
+  footer.innerHTML = `
+    <table style="width:240px;height:60px;margin-left:auto;margin-right:auto">
+      <tr>
+        <th>Name</th>
+        <th>NetID</th>
+      </tr>
+      <tr>
+        <td>Abhizeet Bomma</td>
+        <td>AXB200104</td>
+      </tr>
+      <tr>
+        <td>Brandon Ho</td>
+        <td>BYH180000</td>
+      </tr>
+      <tr>
+        <td>Kamran Hakeem George</td>
+        <td>KXH200032</td>
+      </tr>
+    </table>
+    <p>End of page.</p>`;
   return footer;
 }
 
