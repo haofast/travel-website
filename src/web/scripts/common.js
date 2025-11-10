@@ -35,7 +35,7 @@ function createFooter() {
         <td>KXH200032</td>
       </tr>
     </table>
-    <p>End of page.</p>`;
+    <p>Section 001</p>`;
   return footer;
 }
 
