@@ -9,16 +9,16 @@ export class FlightSearcher {
   async getDepartingFlights() {
     return this.getFlights(
       this.searchSubmission.getDepartureDateObject(),
-      this.searchSubmission.getOriginAbbreviation(),
-      this.searchSubmission.getDestinationAbbreviation(),
+      this.searchSubmission.data.origin,
+      this.searchSubmission.data.destination,
     );
   }
 
   async getReturningFlights() {
     return this.getFlights(
       this.searchSubmission.getReturningDateObject(),
-      this.searchSubmission.getDestinationAbbreviation(),
-      this.searchSubmission.getOriginAbbreviation(),
+      this.searchSubmission.data.destination,
+      this.searchSubmission.data.origin,
     );
   }
 
@@ -26,10 +26,12 @@ export class FlightSearcher {
     const allFlightListings = await FlightDataInterface.getAllListings();
     const requestedNumPassengers = this.searchSubmission.getTotalPassengers();
 
+    console.log(origin, destination)
+
     // get flights matching origin, destination, and the minimum required seats
     const filteredFlightListings = allFlightListings.filter((flight) => (
-      flight.origin.includes(origin)
-      && flight.destination.includes(destination)
+      flight.origin.toLowerCase().includes(origin.toLowerCase())
+      && flight.destination.toLowerCase().includes(destination.toLowerCase())
       && parseInt(flight.availableSeats) >= requestedNumPassengers
     ));
 
