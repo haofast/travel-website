@@ -1,13 +1,7 @@
+import { FieldIDs, FieldNames, TripTypeIDs, FORM_ID, MAX_PASSENGERS_PER_CATEGORY } from "../FlightConstants.js";
 import { getStateAbbreviation } from "../../location.js";
+import { isValidCity } from "../../locationValidation.js";
 import { isValidDate } from "../../dateValidation.js";
-import {
-  FieldIDs,
-  FieldNames,
-  TripTypeIDs,
-  FORM_ID,
-  MAX_PASSENGERS_PER_CATEGORY,
-  VALID_STATES,
-} from "../FlightConstants.js";
 
 export class FlightSearchSubmission {
 
@@ -40,12 +34,16 @@ export class FlightSearchSubmission {
       return [`${fieldName.toUpperCase().replaceAll(" ", "_")}_REQUIRED`, `${fieldName} is required.`];
     }
 
-    if (!VALID_STATES.includes(this.getOriginAbbreviation())) {
-      return ["INVALID_ORIGIN", "Origin must be either Texas or California."];
+    if (!isValidCity(this.data.origin)) {
+      return ["INVALID_ORIGIN", "Origin must be a city in Texas or California."];
     }
 
-    if (!VALID_STATES.includes(this.getDestinationAbbreviation())) {
-      return ["INVALID_DESTINATION", "Destination must be either Texas or California."];
+    if (!isValidCity(this.data.destination)) {
+      return ["INVALID_DESTINATION", "Destination must be a city in Texas or California."];
+    }
+
+    if (this.data.origin.toLowerCase() === this.data.destination.toLowerCase()) {
+      return ["SAME_ORIGIN_DESTINATION", "Origin and destination cannot be the same city."];
     }
 
     if (!isValidDate(this.data.departureDate)) {
@@ -83,14 +81,6 @@ export class FlightSearchSubmission {
 
   isFlightRoundTrip() {
     return this.data.tripType === TripTypeIDs.ROUND_TRIP;
-  }
-
-  getOriginAbbreviation() {
-    return getStateAbbreviation(this.data.origin);
-  }
-
-  getDestinationAbbreviation() {
-    return getStateAbbreviation(this.data.destination);
   }
 
   getDepartureDateObject() {
